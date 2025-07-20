@@ -64,7 +64,14 @@ export default function Home() {
 
   return (
     <main className="min-h-screen w-full flex flex-col items-center justify-center px-4 py-8">
-      <h1 className="text-4xl md:text-5xl font-extrabold text-green-700 mb-2 tracking-tight drop-shadow-lg select-none">
+      <h1
+        className="text-4xl md:text-5xl font-extrabold text-green-700 mb-2 tracking-tight drop-shadow-lg select-none cursor-pointer"
+        onClick={() => {
+          setResult(null);
+          setImageFile(null);
+          setTextInput("");
+        }}
+      >
         <span className="inline-block align-middle mr-2">🥬</span>VitamiScan
       </h1>
       <p className="text-neutral-500 mb-8 text-center max-w-md">
@@ -123,6 +130,15 @@ export default function Home() {
 
       {result && (
         <>
+          {imageFile && (
+            <div className="flex justify-center mb-4">
+              <img
+                src={URL.createObjectURL(imageFile)}
+                alt="Aperçu de l'aliment"
+                className="w-48 h-48 object-cover rounded-2xl shadow-lg border-4 border-green-200 bg-white"
+              />
+            </div>
+          )}
           <ResultCard
             aliment={result.aliment}
             vitamineK={result.vitamineK}
